@@ -17,6 +17,29 @@ export default {
             },
         },
     },
-
-    plugins: [forms],
+    daisyui: {
+        themes: [
+            {
+                mytheme: {
+                    "primary": "#34d399",
+                    "secondary": "#a7f3d0",
+                    "accent": "#f3f4f6",
+                    "neutral": "#d1d5db",
+                    "base-100": "#FFFFFF",
+                    "info": "#3ABFF8",
+                    "success": "#36D399",
+                    "warning": "#ea580c",
+                    "error": "#dc2626",
+                },
+            },
+        ],
+        styled: true,
+        // themes: false,
+        base: true,
+        utils: true,
+        logs: true,
+        prefix: "",
+        darkTheme: "light",
+    },
+    plugins: [require("daisyui"), forms],
 };
