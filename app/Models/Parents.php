@@ -10,7 +10,7 @@ class Parents extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['phone_number', 'address'];
+    protected $fillable = ['phone_number', 'emergency_number', 'address'];
 
     /**
      * Get the post's user.

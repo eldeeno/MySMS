@@ -29,6 +29,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
+                                    <th>Emergency Number</th>
                                     <th>Children</th>
                                     <th>Action</th>
                                 </tr>
@@ -39,10 +40,9 @@
                                         <td>{{ parent.user.name }}</td>
                                         <td>{{ parent.user.email }}</td>
                                         <td>{{ parent.phone_number }}</td>
+                                        <td>{{ parent.emergency_number }}</td>
                                         <td>
-                                            <template v-for="child in parent.children">
-                                                <h5>{{ child.fullname }}</h5>
-                                            </template>
+                                            {{ parent.children.length }}
                                         </td>
                                         <td>
                                             <Link :href="`/admin/parents/${parent.id}/edit`" class="btn btn-xs btn-success mr-2 normal-case">edit</Link>

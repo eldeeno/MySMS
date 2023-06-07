@@ -70,11 +70,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/classes/destroy', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('classes.destroy');
 
 
-    Route::get('/admin/attendance', [\App\Http\Controllers\AttendanceController::class, 'index']);
+    Route::get('/admin/attendance', [\App\Http\Controllers\AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/admin/attendance/create', [\App\Http\Controllers\AttendanceController::class, 'create']);
     Route::post('/admin/attendance/store', [\App\Http\Controllers\AttendanceController::class, 'store'])->name('attendance.store');
+    Route::post('/admin/attendance/{attendance}/destroy', [\App\Http\Controllers\AttendanceController::class, 'destroy'])->name('attendance.destroy');
 
-    Route::get('/admin/school-fees', [\App\Http\Controllers\SchoolFeeController::class, 'index']);
+    Route::get('/admin/school-fees', [\App\Http\Controllers\SchoolFeeController::class, 'index'])->name('plan.index');
+    Route::get('/admin/school-fees/create', [\App\Http\Controllers\SchoolFeeController::class, 'create']);
+    Route::post('/admin/school-fees/store', [\App\Http\Controllers\SchoolFeeController::class, 'store'])->name('plan.store');
+    Route::get('/admin/school-fees/{payment_plan}/edit', [\App\Http\Controllers\SchoolFeeController::class, 'edit'])->name('plan.edit');
+    Route::post('/admin/school-fees/{plan_plan}/update', [\App\Http\Controllers\SchoolFeeController::class, 'update'])->name('plan.update');
+    Route::post('/admin/school-fees/{payment_plan}/destroy', [\App\Http\Controllers\SchoolFeeController::class, 'destroy'])->name('plan.destroy');
+
 });
 
 require __DIR__.'/auth.php';

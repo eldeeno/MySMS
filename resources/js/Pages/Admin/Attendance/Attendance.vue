@@ -23,25 +23,22 @@
                     <div class="overflow-x-auto">
                         <table class="table table-compact w-full">
                             <thead>
-                            <tr>
-                                <th>S/No.</th>
-                                <th>Class Name</th>
-                                <th>Section</th>
-                                <th>Students</th>
-                                <th>Action</th>
-                            </tr>
+                                <tr>
+                                    <th>S/No.</th>
+                                    <th>Class Name</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(classs, index) in classes">
-                                <td>{{ ++index }}</td>
-                                <td>{{ classs.name }}</td>
-                                <td>{{ classs.section }}</td>
-                                <td>{{ classs.students.length }}</td>
-                                <td>
-                                    <Link :href="`/admin/classes/${classs.id}/edit`" class="btn btn-xs btn-success mr-2 normal-case">edit</Link>
-                                    <button @click.prevent="deleteClass(classs.id)" class="btn btn-xs btn-error normal-case">delete</button>
-                                </td>
-                            </tr>
+                                <tr v-for="(attendance, index) in attendances">
+                                    <td>{{ ++index }}</td>
+                                    <td>{{ attendance.class.name }}</td>
+                                    <td>{{ attendance.date }}</td>
+                                    <td>
+                                        <button @click.prevent="deleteAttendance(attendance.id)" class="btn btn-xs btn-error normal-case">delete</button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -58,7 +55,15 @@ import SideNav from "@/Components/SideNav.vue";
 
 export default {
     name: "Attendance",
-    components: {SideNav, Link, AuthenticatedLayout, Head}
+    components: {SideNav, Link, AuthenticatedLayout, Head},
+    props: ['attendances'],
+    methods: {
+        deleteAttendance(id) {
+            if (confirm("Are you sure you want to delete?")) {
+                this.$inertia.post(route("attendance.destroy", id));
+            }
+        }
+    }
 }
 </script>
 

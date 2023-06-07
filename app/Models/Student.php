@@ -12,7 +12,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['firstname', 'lastname', 'email', 'address', 'phone_number', 'date_of_birth', 'gender', 'class_id', 'emergency_number', 'photo'];
+    protected $fillable = ['firstname', 'lastname', 'email', 'address', 'phone_number', 'date_of_birth', 'gender', 'class_id', 'photo'];
     protected $appends = ['fullname'];
     /**
     * Get the student's full name.
@@ -36,5 +36,13 @@ class Student extends Model
     public function students()
     {
         return $this->belongsToMany(Parents::class, 'student_parent');
+    }
+
+    /**
+     * The attendances that belong to the student.
+     */
+    public function attendances(): BelongsToMany
+    {
+        return $this->belongsToMany(Attendance::class);
     }
 }

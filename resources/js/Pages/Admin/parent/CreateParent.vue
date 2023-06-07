@@ -34,23 +34,29 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-row gap-4">
-                                    <div class="form-control basis-1/2">
+                                    <div class="form-control basis-1/3">
                                         <label for="email" class="label">
                                             <span class="label-text">Email</span>
                                         </label>
                                         <input v-model="form.email" type="email" name="email" placeholder="Email" class="input input-bordered" />
                                     </div>
-                                    <div class="form-control basis-1/2">
+                                    <div class="form-control basis-1/3">
                                         <label for="phone_number" class="label">
                                             <span class="label-text">Phone number</span>
                                         </label>
                                         <input v-model="form.phone_number" type="text" name="phone_number" placeholder="Phone number" class="input input-bordered" />
                                     </div>
+                                    <div class="form-control basis-1/3">
+                                        <label class="label">
+                                            <span class="label-text">Emergency number</span>
+                                        </label>
+                                        <input  v-model="form.emergency_number" type="text" name="emergency_number" placeholder="Emergency number" class="input input-bordered" />
+                                    </div>
                                 </div>
                                 <div class="flex">
                                     <div class="form-control basis-full">
                                         <label for="address" class="label">
-                                            <span class="label-text">Email</span>
+                                            <span class="label-text">Address</span>
                                         </label>
                                         <textarea v-model="form.address" placeholder="Address" name="address" class="textarea textarea-bordered textarea-sm w-full" ></textarea>
                                     </div>
@@ -103,6 +109,7 @@ export default {
                 email: null,
                 address: null,
                 phone_number: null,
+                emergency_number: null,
                 selected_children: null
             },
             children: [

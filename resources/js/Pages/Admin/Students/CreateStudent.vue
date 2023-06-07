@@ -63,19 +63,13 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col md:flex-row gap-4">
-                                    <div class="form-control basis-1/3">
-                                        <label class="label">
-                                            <span class="label-text">Emergency number</span>
-                                        </label>
-                                        <input  v-model="form.emergency_number" type="text" name="emergency_number" placeholder="Emergency number" class="input input-bordered" />
-                                    </div>
-                                    <div class="form-control basis-1/3">
+                                    <div class="form-control basis-1/2">
                                         <label class="label">
                                             <span class="label-text">Birth date</span>
                                         </label>
                                         <input  v-model="form.date_of_birth" type="date" name="date_of_birth" placeholder="Date of birth" class="input input-bordered" />
                                     </div>
-                                    <div class="form-control basis-1/3">
+                                    <div class="form-control basis-1/2">
                                         <label class="label">
                                             <span class="label-text">Gender</span>
                                         </label>
@@ -125,7 +119,6 @@ export default {
                 email: null,
                 address: null,
                 phone_number: null,
-                emergency_number: null,
                 gender: null,
                 date_of_birth: null,
                 photo: null,

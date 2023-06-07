@@ -34,11 +34,13 @@ class ParentController extends Controller
             'name' => ['required'],
             'email' => ['required'],
             'phone_number' => ['required'],
+            'emergency_number' => ['required'],
             'address' => ['required'],
         ])->validate();
 
         $parent = Parents::create([
             'phone_number' => $request->phone_number,
+            'emergency_number' => $request->emergency_number,
             'address' => $request->address
         ]);
 
@@ -80,11 +82,13 @@ class ParentController extends Controller
             'name' => ['required'],
             'email' => ['required'],
             'phone_number' => ['required'],
+            'emergency_number' => ['required'],
             'address' => ['required'],
         ])->validate();
 
         $parent->update([
             'phone_number' => $request->phone_number,
+            'emergency_number' => $request->emergency_number,
             'address' => $request->address
         ]);
 

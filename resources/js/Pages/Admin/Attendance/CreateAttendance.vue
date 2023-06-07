@@ -26,7 +26,7 @@
                                         <label class="label">
                                             <span class="label-text">Class</span>
                                         </label>
-                                        <select v-model="form.class_id" name="class" class="select select-bordered w-full">
+                                        <select @change="filter()" v-model="form.class_id" name="class" class="select select-bordered w-full">
                                             <option disabled selected>Select class</option>
                                             <option v-for="classs in classes" :value="classs.id">{{ classs.name }}</option>
                                         </select>
@@ -41,9 +41,31 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="flex flex-row mt-8" v-if="display_table">
+                                    <div class="overflow-x-auto">
+                                        <table class="table w-full">
+                                            <thead>
+                                                <tr>
+                                                    <th>S/No.</th>
+                                                    <th>Student Name</th>
+                                                    <th>Present</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(student, index) in students">
+                                                    <th>{{ ++index }}</th>
+                                                    <td>{{ student.fullname }}</td>
+                                                    <td>
+                                                        <input v-model="form.selected_students" name="" type="checkbox" :value="student.id" class="checkbox checkbox-primary checkbox-sm" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-actions flex flex-row-reverse">
-                                <div class="form-control p-8">
+                                <div class="form-control p-8" v-if="display_table">
                                     <button @click="submit()" type="button" class="btn btn-primary">Create</button>
                                 </div>
                             </div>
@@ -63,6 +85,7 @@ import SideNav from "@/Components/SideNav.vue";
 export default {
     name: "CreateAttendance",
     components: {SideNav, Link, AuthenticatedLayout, Head},
+    props: ['students'],
     data() {
         return {
             form: {
@@ -75,12 +98,17 @@ export default {
             session: {
                 terms: []
             },
+            display_table: false,
         }
     },
     methods :{
         submit() {
             this.$inertia.post(route("attendance.store", this.form));
-        }
+        },
+        filter() {
+            this.display_table = true
+            this.$inertia.get('/admin/attendance/create', { class: this.form.class_id }, { preserveState: true });
+        },
     },
     created() {
         this.session = this.$attrs.session
