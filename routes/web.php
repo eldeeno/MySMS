@@ -29,11 +29,8 @@ Route::get('/', function () {
     return Inertia::render('Auth/Login');
 });
 
-Route::get('/admin-dashboard', [\App\Http\Controllers\AdminController::class, 'index']);
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'index'] )->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/parent-dashboard', [\App\Http\Controllers\Parent\ParentController::class, 'index'] )->middleware(['auth', 'verified'])->name('parent.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return $this->morphTo();
     }
+
+    public function getRedirectRoute()
+    {
+        return match($this->userable_type) {
+            'App\Models\Admin' => 'admin.dashboard',
+            'App\Models\Parents' => 'parent.dashboard'
+        };
+    }
 }

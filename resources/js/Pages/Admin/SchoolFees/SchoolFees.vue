@@ -1,9 +1,9 @@
 <template>
-    <Head title="Attendance" />
+    <Head title="School Fees" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Attendance Record</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">School Fees</h2>
         </template>
 
         <div class="py-12">
@@ -46,15 +46,16 @@
                             </div>
                         </div>
                     <div class="flex flex-col w-full">
-                        <div class="pb-4 flex flex-row-reverse">
-                            <Link class="btn btn-primary text-gray-800 btn-sm gap-1 normal-case" href="attendance/create">
-                                Add Payment Plan
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </Link>
-                        </div>
+<!--                        <div class="pb-4 flex flex-row-reverse">-->
+<!--                            <Link class="btn btn-primary text-gray-800 btn-sm gap-1 normal-case" href="attendance/create">-->
+<!--                                Add Payment Plan-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+<!--                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />-->
+<!--                                </svg>-->
+<!--                            </Link>-->
+<!--                        </div>-->
                         <div class="overflow-x-auto">
+                            <h5 class="mb-5 underline">Payment Records</h5>
                             <table class="table table-compact w-full">
                                 <thead>
                                 <tr>
