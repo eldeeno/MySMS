@@ -34,7 +34,7 @@
                                 <tr v-for="(attendance, index) in attendances">
                                     <td>{{ ++index }}</td>
                                     <td>{{ attendance.class.name }}</td>
-                                    <td>{{ attendance.date }}</td>
+                                    <td>{{ moment(attendance.date).format('LLLL') }}</td>
                                     <td>
                                         <button @click.prevent="deleteAttendance(attendance.id)" class="btn btn-xs btn-error normal-case">delete</button>
                                     </td>
@@ -52,11 +52,17 @@
 import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import SideNav from "@/Components/SideNav.vue";
+import moment from "moment";
 
 export default {
     name: "Attendance",
     components: {SideNav, Link, AuthenticatedLayout, Head},
     props: ['attendances'],
+    data() {
+        return {
+            moment: moment,
+        }
+    },
     methods: {
         deleteAttendance(id) {
             if (confirm("Are you sure you want to delete?")) {

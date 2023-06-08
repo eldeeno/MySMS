@@ -13,38 +13,37 @@
                 </div>
                 <div class="w-[80%]">
                     <div class="pb-4 flex flex-row gap-2">
-                        <select class="select-bordered select">
-                            <option>Child</option>
-                            <option>Child</option>
-                            <option>Child</option>
-                        </select>
-<!--                        <input class="input input-group-md input-bordered" type="text" name="" id="">-->
-<!--                        <input class="input input-group-md input-bordered" type="text" name="" id="">-->
-<!--                        <input class="input input-group-md input-bordered" type="text" name="" id="">-->
-<!--                        <input class="input input-group-md input-bordered" type="text" name="" id="">-->
+                        <div class="form-control basis-1/3">
+                            <label class="label label-text">Select Child</label>
+                            <select @change="filter()" v-model="selected_child" class="select select-bordered">
+                                <option selected disabled>Select child</option>
+                                <option v-for="student in children" :value="student.id">{{ student.fullname }}</option>
+                            </select>
+                        </div>
+                        <div class="form-control basis-1/3">
+                            <label class="label label-text">Select Date</label>
+                            <input @change="filter()" type="date" v-model="selected_date" class="input input-bordered" name="date">
+                        </div>
                     </div>
-<!--                    <div class="overflow-x-auto">-->
-<!--                        <table class="table table-compact w-full">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                                <th>S/No.</th>-->
-<!--                                <th>Class Name</th>-->
-<!--                                <th>Date</th>-->
-<!--                                <th>Action</th>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody>-->
-<!--                            <tr v-for="(attendance, index) in attendances">-->
-<!--                                <td>{{ ++index }}</td>-->
-<!--                                <td>{{ attendance.class.name }}</td>-->
-<!--                                <td>{{ attendance.date }}</td>-->
-<!--                                <td>-->
-<!--                                    <button @click.prevent="deleteAttendance(attendance.id)" class="btn btn-xs btn-error normal-case">delete</button>-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                    </div>-->
+
+                    <div class="card w-full bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <h2 class="card-title underline">Attendances</h2>
+                            <ul>
+                                <li v-if="display_attendance" v-for="child_attendance in children_attendances">
+                                    <h4 class="font-bold text-[18px]">{{ child_attendance.fullname }}</h4>
+                                    <span v-if="child_attendance.attendances.length > 0" v-for="(attendance, index) in child_attendance.attendances">
+                                        <h5>
+                                            {{++index}}- {{ moment(attendance.date).format('LL') }}
+                                        </h5>
+                                    </span>
+                                    <p v-else >No attendance for selected child or date</p>
+                                </li>
+                            </ul>
+                            <div class="card-actions justify-end">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,17 +54,30 @@
 import {Head, Link} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ParentNav from "@/Components/ParentNav.vue";
+import moment from "moment";
 
 export default {
     name: "Attendance",
     components: {ParentNav, Link, AuthenticatedLayout, Head},
-    props: ['attendances', 'students'],
-    methods: {
-        deleteAttendance(id) {
-            if (confirm("Are you sure you want to delete?")) {
-                this.$inertia.post(route("attendance.destroy", id));
-            }
+    props: ['attendances', 'children', 'session', 'children_attendances'],
+    data() {
+        return {
+            moment: moment,
+            display_attendance: false,
+            selected_child: '',
+            selected_date: '',
         }
+    },
+    methods: {
+        filter() {
+            if (this.selected_child) {
+                this.display_attendance = true
+                this.$inertia.get('/parent/attendance', {
+                    child_id: this.selected_child,
+                    date: this.selected_date,
+                }, { preserveState: true });
+            }
+        },
     }
 }
 </script>
