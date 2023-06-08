@@ -35,7 +35,7 @@ import SideNav from "@/Components/SideNav.vue";
                     <div class="flex flex-col w-full mb-10">
                         <div class="flex flex-row justify-between px-8">
                             <h4 class="font-bold text-lg">Current Session:
-                                <span class="text-primary">{{ current_session.from +' '+current_session.to }}</span>
+                                <span class="text-primary">{{ current_session.from +'-'+current_session.to }}</span>
                             </h4>
                             <h4 class="font-bold text-lg">Current Term:
                                 <span class="text-primary">{{ current_session.terms[0]['name'] }}</span>

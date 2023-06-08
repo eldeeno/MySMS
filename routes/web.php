@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'index'] )->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/parent-dashboard', [\App\Http\Controllers\Parent\ParentController::class, 'index'] )->middleware(['auth', 'verified'])->name('parent.dashboard');
+Route::get('/parent/home', [\App\Http\Controllers\Parent\ParentController::class, 'index'] )->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -66,7 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/classes/{class}/update', [\App\Http\Controllers\ClassesController::class, 'update'])->name('classes.update');
     Route::post('/admin/classes/destroy', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('classes.destroy');
 
-
     Route::get('/admin/attendance', [\App\Http\Controllers\AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/admin/attendance/create', [\App\Http\Controllers\AttendanceController::class, 'create']);
     Route::post('/admin/attendance/store', [\App\Http\Controllers\AttendanceController::class, 'store'])->name('attendance.store');
@@ -78,6 +77,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/school-fees/{payment_plan}/edit', [\App\Http\Controllers\SchoolFeeController::class, 'edit'])->name('plan.edit');
     Route::post('/admin/school-fees/{plan_plan}/update', [\App\Http\Controllers\SchoolFeeController::class, 'update'])->name('plan.update');
     Route::post('/admin/school-fees/{payment_plan}/destroy', [\App\Http\Controllers\SchoolFeeController::class, 'destroy'])->name('plan.destroy');
+
+    Route::get('/parent/attendance', [\App\Http\Controllers\Parent\AttendanceController::class, 'index']);
 
 });
 

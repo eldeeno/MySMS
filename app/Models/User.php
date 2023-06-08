@@ -58,8 +58,8 @@ class User extends Authenticatable
     public function getRedirectRoute()
     {
         return match($this->userable_type) {
-            'App\Models\Admin' => 'admin.dashboard',
-            'App\Models\Parents' => 'parent.dashboard'
+            'App\Models\Admin' => '/dashboard',
+            'App\Models\Parents' => '/parent/home'
         };
     }
 }

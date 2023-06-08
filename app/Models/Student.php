@@ -33,7 +33,7 @@ class Student extends Model
     /**
      * The parent that belong to the student.
      */
-    public function students()
+    public function parents()
     {
         return $this->belongsToMany(Parents::class, 'student_parent');
     }

@@ -45,7 +45,7 @@
                                     <div class="flex flex-col sm:flex-row gap-4">
                                         <div v-for="(term, index) in form.session.terms" class="form-control basis-full sm:basis-1/3">
                                             <label for="from" class="label">
-                                                <span class="label-text">Term 2</span>
+                                                <span class="label-text">Term {{ ++index }}</span>
                                             </label>
                                             <input type="text" v-model="term.name" name="from" placeholder="From" class="input input-bordered" />
                                             <div class="form-control basis-1/6">

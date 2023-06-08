@@ -7,6 +7,7 @@ use App\Models\Parents;
 use App\Models\Session;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -26,20 +27,5 @@ class AdminController extends Controller
             'total_number_of_classes' => $total_number_of_classes,
             'current_session' => $current_session,
         ]);
-    }
-
-    public function manageUsers()
-    {
-        return Inertia::render('Admin/ManageUsers');
-    }
-
-    public function attendance()
-    {
-        return Inertia::render('Admin/Attendance');
-    }
-
-    public function schoolFees()
-    {
-        return Inertia::render('Admin/SchoolFees');
     }
 }
