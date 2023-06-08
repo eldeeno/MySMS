@@ -56,17 +56,25 @@
 <!--                        </div>-->
                         <div class="overflow-x-auto">
                             <h5 class="mb-5 underline">Payment Records</h5>
-                            <table class="table table-compact w-full">
+                            <table class="table w-full">
+                                <!-- head -->
                                 <thead>
                                 <tr>
                                     <th>S/No.</th>
-                                    <th>Class Name</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
+                                    <th>Student</th>
+                                    <th>Plan</th>
+                                    <th>Term</th>
+                                    <th>Amount</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                <tr v-for="(payment, index) in payments">
+                                    <td>{{ ++index }}</td>
+                                    <td>{{ payment.student.fullname }}</td>
+                                    <td>{{ payment.payment_plan.name }}</td>
+                                    <td>{{ payment.term.name }}</td>
+                                    <td>₦{{ payment.amount }}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -85,7 +93,7 @@ import SideNav from "@/Components/SideNav.vue";
 export default {
     name: "SchoolFees",
     components: {SideNav, Link, AuthenticatedLayout, Head},
-    props: ['plans'],
+    props: ['plans', 'payments'],
     methods: {
         deletePlan(id) {
             if (confirm("Are you sure you want to delete?")) {

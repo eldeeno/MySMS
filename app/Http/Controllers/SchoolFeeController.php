@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\PaymentPlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
@@ -11,8 +13,9 @@ class SchoolFeeController extends Controller
 {
     public function index(): \Inertia\Response
     {
+        $payments = Payment::with(['student', 'term', 'paymentPlan'])->get();
         $plans = PaymentPlan::all();
-        return Inertia::render('Admin/SchoolFees/SchoolFees', ['plans' => $plans]);
+        return Inertia::render('Admin/SchoolFees/SchoolFees', ['plans' => $plans, 'payments' => $payments]);
     }
 
     public function create()

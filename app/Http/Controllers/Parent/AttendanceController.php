@@ -30,10 +30,8 @@ class AttendanceController extends Controller
                 $query->where('date', $request->date);
             }])->where('id', $children_ids)->get();
         }
-        $session = Session::with(['terms'])->where('status', 1)->first();
         return Inertia::render('Parent/Attendance', [
             'children' => $children,
-            'session' => $session,
             'children_attendances' => $children_attendances
         ]);
     }

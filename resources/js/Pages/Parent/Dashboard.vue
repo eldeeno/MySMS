@@ -18,12 +18,6 @@ const props = defineProps ({
         </template>
 
         <div class="py-12">
-<!--            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-4">-->
-<!--                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">-->
-<!--                    <div class="p-6 text-gray-900">Parent logged in!</div>-->
-<!--                </div>-->
-<!--            </div>-->
-
             <div class="flex mx-24">
                 <div class="w-[20%]">
                     <ParentNav/>
@@ -52,6 +46,12 @@ const props = defineProps ({
                                 </div>
                             </div>
                         </div>
+<!--                        <div class="flex flex-row px-8 mt-3">-->
+<!--                            <div class="form-control basis-1/3">-->
+<!--                                <label for="" class="label label-text">Emergency Number</label>-->
+<!--                                <input type="text" class="input input-bordered">-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

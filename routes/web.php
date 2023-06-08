@@ -80,6 +80,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/parent/attendance', [\App\Http\Controllers\Parent\AttendanceController::class, 'index']);
 
+    Route::get('/parent/school-fees', [\App\Http\Controllers\Parent\SchoolFeesController::class, 'index'])->name('fee.index');
+    Route::get('/parent/school-fees/pay', [\App\Http\Controllers\Parent\SchoolFeesController::class, 'makePayment']);
+    Route::post('/parent/school-fees/pay-store', [\App\Http\Controllers\Parent\SchoolFeesController::class, 'paymentStore'])->name('payment.store');
+
 });
 
 require __DIR__.'/auth.php';
